@@ -1,0 +1,6 @@
+com\mockingdemo\client\model\UserRequest.class
+com\mockingdemo\client\model\UserResponse.class
+com\mockingdemo\client\model\ProcessedResponse$ProcessedResponseBuilder.class
+com\mockingdemo\client\model\ProcessedResponse.class
+com\mockingdemo\client\model\EnhancedRequest$EnhancedRequestBuilder.class
+com\mockingdemo\client\model\EnhancedRequest.class

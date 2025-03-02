@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package demo;
+
+option go_package = "github.com/user/mockingdemo";
+
+// UserRequest is the request from the user to Server A
+message UserRequest {
+  string user_id = 1;
+  string query = 2;
+}
+
+// EnhancedRequest is the request from Server A to Server B with additional fields
+message EnhancedRequest {
+  string user_id = 1;
+  string query = 2;
+  string timestamp = 3;
+  string request_id = 4;
+  string server_a_version = 5;
+}
+
+// ProcessedResponse is the response from Server B to Server A
+message ProcessedResponse {
+  string result = 1;
+  bool success = 2;
+  string processing_time = 3;
+  string server_b_id = 4;
+}
+
+// UserResponse is the response from Server A back to the user
+message UserResponse {
+  string result = 1;
+  bool success = 2;
+  string request_id = 3;
+}
+
+// Service B definition
+service ServiceB {
+  rpc ProcessRequest(EnhancedRequest) returns (ProcessedResponse) {}
+}
+
+// Service A definition (for REST to gRPC bridge)
+service ServiceA {
+  rpc HandleUserRequest(UserRequest) returns (UserResponse) {}
+}
