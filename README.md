@@ -14,10 +14,20 @@ This project demonstrates how to use mocking in a microservices architecture wit
 
 Server B is a gRPC service that processes requests from Server A.
 
-To run Server B:
+#### QA Environment
+
+In QA mode, Server A uses an internal mock of Server B:
 ```bash
 cd c:\Users\aksha\Desktop\MockingDemo\server_b
-go run main.go
+go run main.go -env=qa
+```
+
+#### stg Environment
+
+In development mode, Server A also uses the internal mock:
+```bash
+cd c:\Users\aksha\Desktop\MockingDemo\server_b
+go run main.go -env=stg
 ```
 
 Server B will start on port 50051 by default.
@@ -26,13 +36,6 @@ Server B will start on port 50051 by default.
 
 Server A is a REST API service that forwards requests to Server B. It can be run in different environments.
 
-#### Production Environment
-
-In production mode, Server A connects to the real Server B:
-```bash
-cd c:\Users\aksha\Desktop\MockingDemo\server_a
-go run main.go -env=prod
-```
 
 #### QA Environment
 
@@ -42,12 +45,12 @@ cd c:\Users\aksha\Desktop\MockingDemo\server_a
 go run main.go -env=qa
 ```
 
-#### Development Environment
+#### stg Environment
 
 In development mode, Server A also uses the internal mock:
 ```bash
 cd c:\Users\aksha\Desktop\MockingDemo\server_a
-go run main.go -env=dev
+go run main.go -env=stg
 ```
 
 Server A will start on port 8080 by default.
